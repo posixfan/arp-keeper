@@ -55,4 +55,4 @@ Launch with a 30-second network polling timeout and a telegram notification.
 <pre>$ ./arp-keeper.py eth0 --timeout 30 --telegram</pre>
 
 You can add a description for each device found in the "description" column of the database file.
-![alt text](https://github.com/posixfan/arp-keeper/blob/main/img/telegram.png) 
+![alt text](https://github.com/posixfan/arp-keeper/blob/main/img/Description.png) 
