@@ -22,3 +22,19 @@ Quick Start Guide
 ~/arp-keeper$ pip install -r requirements.txt
 ~/arp-keeper$ sudo .venv/bin/python3 arp-keeper.py eth0
 </pre>
+
+# How to use it
+<pre>
+usage: arp-keeper.py iface [options]
+
+Searches your local network for new devices.
+
+positional arguments:
+  iface        Name of the listening interface.
+
+options:
+  -h, --help   show this help message and exit
+  --timeout    Timeout between LAN requests. The default is 15 seconds.
+  --database   The path to the database file. By default, a database.csv file is created.
+  --telegram   Send Telegram notifications
+</pre>
