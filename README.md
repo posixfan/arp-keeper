@@ -56,3 +56,6 @@ Launch with a 30-second network polling timeout and a telegram notification.
 
 You can add a description for each device found in the "description" column of the database file.
 ![alt text](https://github.com/posixfan/arp-keeper/blob/main/img/Description.png) 
+
+# To understand better
+https://en.wikipedia.org/wiki/Address_Resolution_Protocol
