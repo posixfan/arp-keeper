@@ -38,3 +38,11 @@ options:
   --database   The path to the database file. By default, a database.csv file is created.
   --telegram   Send Telegram notifications
 </pre>
+
+# Telegram notifications (--telegram)
+If you want to use the Telegram notification, you need to edit the 'api_token' and 'CHAT_ID' variables. (see the screenshot below). \
+\
+![alt text](https://github.com/posixfan/arp-keeper/blob/main/img/telegram.png)) \
+\
+How to create a telegram bot => https://t.me/BotFather \
+The tool can work without Telegram. You decide whether to configure this option or not.
