@@ -46,3 +46,10 @@ If you want to use the Telegram notification, you need to edit the 'api_token' a
 \
 How to create a telegram bot => https://t.me/BotFather \
 The tool can work without Telegram. You decide whether to configure this option or not.
+
+# Launch example
+The first launch. A database.csv database file is created where all found devices are recorded.
+<pre>$ sudo ./arp-keeper.py eth0</pre>
+
+Launch with a 30-second network polling timeout and a telegram notification.
+<pre>$ ./arp-keeper.py eth0 --timeout 30 --telegram</pre>
