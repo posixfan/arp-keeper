@@ -112,4 +112,4 @@ Contributions are welcome! Please open an issue or submit a pull request if you 
 Andrew Razuvaev - [GitHub](https://github.com/posixfan) | [Email](posixfan87@yandex.ru)
 
 # Acknowledgments
-Thanks to the developers of **scapy**, **psutil**, **mac_vendor_lookup**, and requests for their excellent libraries.
+Thanks to the developers of **scapy**, **psutil**, **mac_vendor_lookup**, and **requests** for their excellent libraries.
