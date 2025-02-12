@@ -109,7 +109,7 @@ You can add a description for each device found in the "description" column of t
 Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
 
 # Author
-Andrew Razuvaev - [GitHub](https://github.com/posixfan) | [Email](posixfan87@yandex.ru)
+Andrew Razuvaev - [GitHub](https://github.com/posixfan) | <posixfan87@yandex.ru>
 
 # Acknowledgments
 Thanks to the developers of **scapy**, **psutil**, **mac_vendor_lookup**, and **requests** for their excellent libraries.
