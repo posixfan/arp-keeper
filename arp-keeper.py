@@ -36,10 +36,10 @@ def is_file_writable(file_path):
                        f'    Create a new database file (y/n)? ')
         if choose != 'n':
             try:
-                with open(file_path, 'a') as file:
+                with open(file_path, 'w') as file:
                     pass
-            except FileNotFoundError:
-                print(f'\033[31m[-]\033[0m File path or access error: {file_path}')
+            except (FileNotFoundError, PermissionError) as e:
+                print(f'\033[31m[-]\033[0m File path or access error: {file_path} - {e}')
                 return False
         else:
             return False
@@ -81,10 +81,12 @@ def scan_network(subnet_address):
 
     return devices
 
+mac_lookup = MacLookup()
+
 def get_manufacturer(mac_address):
     try:
-        return MacLookup().lookup(mac_address)
-    except:
+        return mac_lookup.lookup(mac_address)
+    except Exception as e:
         return f'Manufacturer not found'
 
 def load_existing_devices(filename):
@@ -115,8 +117,32 @@ def send_telegram(line):
     msg_data['text'] = line
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 
-    post(hook_url, headers=headers, data=dumps(msg_data, ensure_ascii=False))
+    try:
+        post(hook_url, headers=headers, data=dumps(msg_data, ensure_ascii=False))
+    except Exception as e:
+        print(f'\033[31m[-]\033[0m Error sending Telegram message: {e}')
 
+def process_new_devices(devices, existing_devices):
+    new_devices = []
+    existing_macs = {device['mac'] for device in existing_devices}
+
+    for device in devices:
+        mac = device['mac']
+        ip = device['ip']
+        manufacturer = get_manufacturer(mac)
+
+        if mac not in existing_macs:
+            line = (f'New device detected\n'
+                  f'    MAC: {mac}\n'
+                  f'    IP: {ip}\n'
+                  f'    Manufacturer: {manufacturer}')
+            print(f'\033[36m[!]\033[0m {line}\n')
+            new_devices.append({'mac': mac, 'ip': ip,
+                                'manufacturer': manufacturer})
+            if args.telegram:
+                send_telegram(line)
+
+    return new_devices
 
 def main():
     if not is_running_as_root():
@@ -154,23 +180,7 @@ def main():
         while True:
             print('\033[32m[+]\033[0m Network scanning...', end='\r')
             devices = scan_network(subnet_address)
-            new_devices = []
-
-            for device in devices:
-                mac = device['mac']
-                ip = device['ip']
-                manufacturer = get_manufacturer(mac)
-
-                if not any(d['mac'] == mac for d in existing_devices):
-                    line = (f'New device detected\n'
-                          f'    MAC: {mac}\n'
-                          f'    IP: {ip}\n'
-                          f'    Manufacturer: {manufacturer}')
-                    print(f'\033[36m[!]\033[0m {line}\n')
-                    new_devices.append({'mac': mac, 'ip': ip,
-                                        'manufacturer': manufacturer})
-                    if args.telegram:
-                        send_telegram(line)
+            new_devices = process_new_devices(devices, existing_devices)
 
             if new_devices:
                 existing_devices.extend(new_devices)
