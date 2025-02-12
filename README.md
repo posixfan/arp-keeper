@@ -106,7 +106,7 @@ You can add a description for each device found in the "description" column of t
 ![alt text](https://github.com/posixfan/arp-keeper/blob/main/img/Description.png) 
 
 # Contributing
-Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
+Feel free to contribute to this project by opening issues or submitting pull requests. Any improvements or suggestions are welcome!
 
 # Author
 Andrew Razuvaev - [GitHub](https://github.com/posixfan) | <posixfan87@yandex.ru>
