@@ -42,7 +42,7 @@ Quick Start Guide
 ~/arp-keeper$ python3 -m venv venv
 ~/arp-keeper$ source venv/bin/activate
 ~/arp-keeper$ pip install -r requirements.txt
-~/arp-keeper$ sudo .venv/bin/python3 arp-keeper.py interface
+~/arp-keeper$ sudo venv/bin/python3 arp-keeper.py interface
 </pre>
 
 # Usage
